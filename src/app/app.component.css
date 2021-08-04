@@ -1,0 +1,12 @@
+.navbar {
+    background-color: var(--ion-color-primary);
+    padding: 0;
+}
+
+.nav-link {
+    padding: 15px;
+}
+
+.active {
+    background-color: var(--ion-color-secondary);
+}
