@@ -1,0 +1,27 @@
+.card {
+    color: #489FB5;
+}
+
+.card-header {
+    background-color: transparent;
+}
+
+.card-footer {
+    background-color: transparent;
+    font-size: small;
+    text-align: center;
+}
+
+label {
+    font-size: small;
+}
+
+.error {
+    color: #eb445a;
+    font-size: small;
+}
+
+.success {
+    color: #A9C986;
+    font-size: small;
+}

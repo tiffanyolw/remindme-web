@@ -1,0 +1,74 @@
+<div class="card d-flex" style="max-width: 18rem; margin: auto; align-items: center;">
+    <div class="card-body mx-auto">
+        <h5 class="card-header mb-3 mx-auto">
+            Sign up for a new account
+        </h5>
+
+        <form [formGroup]="registerForm">
+            <div class="form-group mb-3">
+                <label for="firstName">First Name</label>
+                <input class="form-control" type="text" id="firstName" formControlName="firstName"
+                    placeholder="First Name" />
+
+                <span class="error"
+                    *ngIf="registerForm.get('firstName')?.errors && registerForm.get('firstName')?.touched">
+                    Please enter a first name
+                </span>
+            </div>
+            <div class="form-group mb-3">
+                <label for="lastName">Last Name</label>
+                <input class="form-control" type="text" id="lastName" formControlName="lastName"
+                    placeholder="Last Name" />
+
+                <span class="error"
+                    *ngIf="registerForm.get('lastName')?.errors && registerForm.get('lastName')?.touched">
+                    Please enter a last name
+                </span>
+            </div>
+            <div class="form-group mb-3">
+                <label for="email">Email</label>
+                <input class="form-control" type="email" id="email" formControlName="email" placeholder="Email" />
+
+                <span class="error" *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched">
+                    Please enter an email
+                </span>
+            </div>
+            <div class="form-group mb-3">
+                <label for="password">Password</label>
+                <input class="form-control" type="password" id="password"
+                    formControlName="password" placeholder="Password" />
+                <span class="error" *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched">
+                    Please enter a password
+                </span>
+            </div>
+            <div class="form-group mb-3">
+                <label for="reenterPassword">Re-enter Password</label>
+                <input class="form-control" type="password" id="reenterPassword"
+                    formControlName="reenterPassword" placeholder="Password" />
+                <span class="error" *ngIf="registerForm.get('reenterPassword')?.errors && registerForm.get('reenterPassword')?.touched">
+                    Please re-enter your password
+                </span>
+            </div>
+
+            <div class="error mb-3" *ngIf="showPasswordError">
+                Your passwords are not the same, please try again.
+            </div>
+            <div class="error mb-3" *ngIf="showError">
+                Could not register, please try again.
+            </div>
+            <div class="success mb-3" *ngIf="showSuccess">
+                Registered! <a class="link" routerLink="/login">Log In</a>
+            </div>
+
+            <button class="btn" (click)="register()" [disabled]="registerForm.invalid">
+                Register
+            </button>
+        </form>
+
+        <div class="card-footer mt-3">
+            <span>
+                Already have an account? <a class="link" routerLink="/login">Log In</a>
+            </span>
+        </div>
+    </div>
+</div>
