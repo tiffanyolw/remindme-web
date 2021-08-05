@@ -1,4 +1,5 @@
 import { Category } from "./category";
+import { Location } from "./location";
 import { Unit } from "./unit";
 
 export interface Product {

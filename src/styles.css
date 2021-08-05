@@ -17,3 +17,7 @@
 .link:hover {
     color: #458795;
 }
+
+.table {
+    vertical-align: middle;
+}
