@@ -3,6 +3,11 @@
         <strong>Error!</strong> Could not load products.
     </ngb-alert>
 </p>
+<p *ngIf="showDeleteError">
+    <ngb-alert type="danger" [dismissible]="false">
+        <strong>Error!</strong> Could not delete product.
+    </ngb-alert>
+</p>
 
 <div *ngIf="!showErrorAlert && productsList && expiredList">
     <button class="btn" routerLink="add-product">
@@ -32,6 +37,9 @@
                 <td>
                     <button class="btn" [routerLink]="['edit-product', product.id]">
                         Edit
+                    </button>
+                    <button class="btn delete-btn" (click)="onDelete(product)">
+                        Delete
                     </button>
                 </td>
             </tr>

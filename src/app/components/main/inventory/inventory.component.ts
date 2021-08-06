@@ -23,6 +23,7 @@ export class InventoryComponent implements OnInit {
 
   // error alert
   showErrorAlert: boolean = false;
+  showDeleteError: boolean = false;
 
   constructor(private _service: ProductService) {
     this.loadAll();
@@ -54,6 +55,15 @@ export class InventoryComponent implements OnInit {
       return `${str} ${product.unit?.name}`;
     }
     return `${str} ${(product.unit?.pluralName || product.unit?.name)}`;
+  }
+
+  onDelete(product: Product) {
+    this._service.deleteProduct(product.id || 0).subscribe(() => {
+      this.loadAll();
+      this.showDeleteError = false;
+    }, () => {
+      this.showDeleteError = true;
+    });
   }
 
   ngOnInit(): void {
