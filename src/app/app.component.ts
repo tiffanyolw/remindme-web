@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   isMenuCollapsed: boolean = true;
+
+  // https://stackoverflow.com/questions/34700438/global-events-in-angular
 }

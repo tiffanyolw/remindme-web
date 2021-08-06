@@ -10,8 +10,8 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./inventory.component.css']
 })
 export class InventoryComponent implements OnInit {
-  productsList: Product[] = [];
-  expiredList: Product[] = [];
+  productsList?: Product[];
+  expiredList?: Product[];
 
   // filtered selections
   categories: number[] = [];
@@ -20,6 +20,9 @@ export class InventoryComponent implements OnInit {
     orderBy: "expiryDate",
     ordering: Ordering.ASC
   };
+
+  // error alert
+  showErrorAlert: boolean = false;
 
   constructor(private _service: ProductService) {
     this.loadAll();
@@ -30,14 +33,16 @@ export class InventoryComponent implements OnInit {
       .subscribe((result) => {
         this.productsList = result;
       }, () => {
-        //this.showToast("Error: Could not load products");
+        this.showErrorAlert = true;
+        this.productsList = [];
       });
 
     this._service.getProducts(Status.Ready, true, this.categories, this.locations, this.order)
       .subscribe((result) => {
         this.expiredList = result;
       }, () => {
-        //this.showToast("Error: Could not load products");
+        this.showErrorAlert = true;
+        this.expiredList = [];
       });
   }
 

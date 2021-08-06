@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Category } from '../interfaces/category';
+import { Location } from '../interfaces/location';
 import { Unit } from '../interfaces/unit';
 
 @Injectable({

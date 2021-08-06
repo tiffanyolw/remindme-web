@@ -9,13 +9,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/account/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InventoryComponent } from './components/main/inventory/inventory.component';
+import { AddProductComponent } from './components/main/inventory/add-product/add-product.component';
+import { EditProductComponent } from './components/main/inventory/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    InventoryComponent
+    InventoryComponent,
+    AddProductComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,
