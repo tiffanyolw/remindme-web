@@ -75,7 +75,7 @@
         <textarea class="form-control" id="notes" formControlName="notes"></textarea>
     </div>
 
-    <button class="btn" (click)="onUpdate()">
+    <button class="btn" (click)="onUpdate()" [disabled]="updateProductForm.invalid">
         Update
     </button>
 </form>

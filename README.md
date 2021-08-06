@@ -33,3 +33,5 @@ Using ng-bootstrap: https://ng-bootstrap.github.io/#/getting-started
 npm install bootstrap
 ng add @ng-bootstrap/ng-bootstrap
 ```
+
+Global Events: https://stackoverflow.com/questions/34700438/global-events-in-angular
