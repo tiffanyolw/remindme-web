@@ -1,0 +1,81 @@
+<p *ngIf="showGetError">
+    <ngb-alert type="danger" [dismissible]="false">
+        <strong>Error!</strong> Could not load information.
+    </ngb-alert>
+</p>
+<p *ngIf="showCouldNotUpdateError">
+    <ngb-alert type="danger" [dismissible]="false">
+        <strong>Error!</strong> Could not update product.
+    </ngb-alert>
+</p>
+
+<form *ngIf="updateProductForm" [formGroup]="updateProductForm">
+    <div class="form-group mb-3">
+        <label for="name">
+            Name
+        </label>
+        <input class="form-control" type="text" id="name" formControlName="name" />
+
+        <span class="error" *ngIf="updateProductForm?.get('name')?.errors && updateProductForm?.get('name')?.touched">
+            Please enter a name
+        </span>
+    </div>
+    <div class="form-group mb-3">
+        <label for="quantity">Quantity</label>
+        <input class="form-control" type="number" id="quantity" min="0" formControlName="quantity" />
+
+        <span class="error" *ngIf="updateProductForm?.get('quantity')?.errors && updateProductForm?.get('quantity')?.touched">
+            Please enter an amount
+        </span>
+    </div>
+    <div class="form-group mb-3">
+        <label for="unit">Unit</label>
+        <select class="form-control" id="unit" formControlName="unitId">
+            <option *ngFor="let unit of units" [value]="unit.id">
+                {{ unit.name }}
+            </option>
+        </select>
+    </div>
+    <div class="form-group mb-3">
+        <label for="purchaseDate">
+            Purchase Date
+        </label>
+        <input class="form-control" type="date" id="purchaseDate" formControlName="purchaseDate" />
+    </div>
+    <div class="form-group mb-3">
+        <label for="expiryDate">
+            Expiry / Best Before Date
+        </label>
+        <input class="form-control" type="date" id="expiryDate" formControlName="expiryDate" />
+    </div>
+    <div class="form-group mb-3">
+        <label for="category">
+            Category
+        </label>
+        <select class="form-control" id="category" formControlName="categoryId">
+            <option *ngFor="let category of categories" [value]="category.id">
+                {{ category.name }}
+            </option>
+        </select>
+    </div>
+    <div class="form-group mb-3">
+        <label for="location">
+            Location Stored
+        </label>
+        <select class="form-control" id="location" formControlName="locationStoredId">
+            <option *ngFor="let location of locations" [value]="location.id">
+                {{ location.name }}
+            </option>
+        </select>
+    </div>
+    <div class="form-group mb-3">
+        <label for="notes">
+            Notes
+        </label>
+        <textarea class="form-control" id="notes" formControlName="notes"></textarea>
+    </div>
+
+    <button class="btn" (click)="onUpdate()">
+        Update
+    </button>
+</form>
