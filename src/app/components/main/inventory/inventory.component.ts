@@ -10,8 +10,10 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./inventory.component.css']
 })
 export class InventoryComponent implements OnInit {
+  allProducts?: Product[];
   productsList?: Product[];
   expiredList?: Product[];
+  selectedList: string = "all";
 
   // filtered selections
   categories: number[] = [];
@@ -30,6 +32,14 @@ export class InventoryComponent implements OnInit {
   }
 
   private loadAll() {
+    this._service.getProducts(Status.Ready, undefined, this.categories, this.locations, this.order)
+      .subscribe((result) => {
+        this.allProducts = result;
+      }, () => {
+        this.showErrorAlert = true;
+        this.allProducts = [];
+      });
+
     this._service.getProducts(Status.Ready, false, this.categories, this.locations, this.order)
       .subscribe((result) => {
         this.productsList = result;
@@ -45,6 +55,17 @@ export class InventoryComponent implements OnInit {
         this.showErrorAlert = true;
         this.expiredList = [];
       });
+  }
+
+  getList(): Product[] {
+    if (this.selectedList === "all") {
+      return this.allProducts || [];
+    } else if (this.selectedList === "products") {
+      return this.productsList || [];
+    } else if (this.selectedList === "expired") {
+      return this.expiredList || [];
+    }
+    return [];
   }
 
   getQuantity(product: Product): string {

@@ -9,8 +9,36 @@
     </ngb-alert>
 </p>
 
-<div *ngIf="!showErrorAlert && productsList && expiredList">
-    <button class="btn" routerLink="add-product">
+<div *ngIf="!showErrorAlert && allProducts && productsList && expiredList">
+    <!-- PUT INTO FILTER COMPONENT
+    <div class="mb-3">
+        <ngb-accordion>
+            <ngb-panel>
+                <ng-template ngbPanelHeader>
+                    <button ngbPanelToggle class="btn filter-btn">Filters</button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                    <div>
+                        <h5>Categories</h5>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="categories">
+                            <label class="form-check-label" for="categories">
+                                Category 1
+                            </label>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-panel>
+        </ngb-accordion>
+    </div>
+    -->
+
+    <select class="form-select w-auto select-list" [(ngModel)]="selectedList">
+        <option value="all">All Products</option>
+        <option value="products">Unexpired Products</option>
+        <option value="expired">Expired Products</option>
+    </select>
+    <button class="btn right-btn" routerLink="add-product">
         Add a Product
     </button>
 
@@ -27,7 +55,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let product of productsList">
+            <tr *ngFor="let product of getList()">
                 <th scope="row">{{ product.name }}</th>
                 <td>{{ getQuantity(product) }}</td>
                 <td>{{ product.category?.name }}</td>
@@ -35,12 +63,16 @@
                 <td>{{ product.notes }}</td>
                 <td>{{ product.expiryDate | date:"MMM dd, yyyy":"+0000"}}</td>
                 <td>
-                    <button class="btn" [routerLink]="['edit-product', product.id]">
-                        Edit
-                    </button>
-                    <button class="btn delete-btn" (click)="onDelete(product)">
-                        Delete
-                    </button>
+                    <div ngbDropdown class="d-inline-block">
+                        <button class="btn" ngbDropdownToggle>Actions</button>
+                        <div ngbDropdownMenu>
+                            <button ngbDropdownItem>Consume</button>
+                            <button ngbDropdownItem>Trash</button>
+                            <div class="dropdown-divider"></div>
+                            <button ngbDropdownItem [routerLink]="['edit-product', product.id]">Edit</button>
+                            <button ngbDropdownItem (click)="onDelete(product)">Delete</button>
+                        </div>
+                    </div>
                 </td>
             </tr>
         </tbody>

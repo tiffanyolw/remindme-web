@@ -8,6 +8,11 @@
     color: #ffffff;
 }
 
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
 .link {
     font-weight: 600;
     color: #16697A;

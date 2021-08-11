@@ -6,3 +6,4 @@
 - Shopping List
 - Authentication
 - Find a better way to deal with dates and timezones
+- Only make 1 API call and use filter function in inventory
