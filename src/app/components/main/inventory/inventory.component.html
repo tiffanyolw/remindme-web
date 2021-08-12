@@ -10,34 +10,20 @@
 </p>
 
 <div *ngIf="!showErrorAlert && allProducts && productsList && expiredList">
-    <!-- PUT INTO FILTER COMPONENT
-    <div class="mb-3">
-        <ngb-accordion>
-            <ngb-panel>
-                <ng-template ngbPanelHeader>
-                    <button ngbPanelToggle class="btn filter-btn">Filters</button>
-                </ng-template>
-                <ng-template ngbPanelContent>
-                    <div>
-                        <h5>Categories</h5>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="categories">
-                            <label class="form-check-label" for="categories">
-                                Category 1
-                            </label>
-                        </div>
-                    </div>
-                </ng-template>
-            </ngb-panel>
-        </ngb-accordion>
-    </div>
-    -->
-
     <select class="form-select w-auto select-list" [(ngModel)]="selectedList">
         <option value="all">All Products</option>
         <option value="products">Unexpired Products</option>
         <option value="expired">Expired Products</option>
     </select>
+    
+    <button class="btn ms-3 filter-btn" (click)="presentFilter()">Filter Options</button>
+
+    <!--<select class="form-select w-auto select-list">
+        <option value="all">Expiry Date</option>
+        <option value="products">Unexpired Products</option>
+        <option value="expired">Expired Products</option>
+    </select>-->
+
     <button class="btn right-btn" routerLink="add-product">
         Add a Product
     </button>
@@ -66,8 +52,8 @@
                     <div ngbDropdown class="d-inline-block">
                         <button class="btn" ngbDropdownToggle>Actions</button>
                         <div ngbDropdownMenu>
-                            <button ngbDropdownItem>Consume</button>
-                            <button ngbDropdownItem>Trash</button>
+                            <button ngbDropdownItem (click)="openConsumeModal(product)">Consume</button>
+                            <button ngbDropdownItem (click)="openTrashModal(product)">Trash</button>
                             <div class="dropdown-divider"></div>
                             <button ngbDropdownItem [routerLink]="['edit-product', product.id]">Edit</button>
                             <button ngbDropdownItem (click)="onDelete(product)">Delete</button>
