@@ -2,6 +2,7 @@
 
 ## Landing Page
 - Nav bar contains log in and sign up links
+- Title link redirects to landing page
 
 ## Login
 - Show error messages upon touch and not enter in fields
@@ -24,12 +25,16 @@
 - Redirect back to log in page if not logged in
 - Only contain information for the currently logged in user
 - Nav bar contains log out link and inventory, history, shopping cart, and settings link
+- Title link redirects to inventory page
 
 ## Inventory
-- Shows list of all products that have not been consumed/trashed
+- Shows list of all products
+- Dropdown with options to show all, expired, or unexpired products
 - Add Product button to add a product
-- Edit to edit the particular product
-- Delete to delete the product
+- Action button on each product shows 4 options
+    - Consume or Trash shows a modal to consume/trash
+    - Edit to edit the particular product
+    - Delete to delete the product
 - Show alert when could not load products
 - Show alert when could not delete product
 

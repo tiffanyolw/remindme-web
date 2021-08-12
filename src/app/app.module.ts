@@ -11,6 +11,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { InventoryComponent } from './components/main/inventory/inventory.component';
 import { AddProductComponent } from './components/main/inventory/add-product/add-product.component';
 import { EditProductComponent } from './components/main/inventory/edit-product/edit-product.component';
+import { HistoryComponent } from './components/main/history/history.component';
+import { ShoppingListComponent } from './components/main/shopping-list/shopping-list.component';
+import { ConsumeModalComponent } from './components/main/inventory/modals/consume-modal/consume-modal.component';
+import { TrashModalComponent } from './components/main/inventory/modals/trash-modal/trash-modal.component';
+import { ProductFilterComponent } from './components/main/filters/product-filter/product-filter.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +24,12 @@ import { EditProductComponent } from './components/main/inventory/edit-product/e
     RegisterComponent,
     InventoryComponent,
     AddProductComponent,
-    EditProductComponent
+    EditProductComponent,
+    HistoryComponent,
+    ShoppingListComponent,
+    ConsumeModalComponent,
+    TrashModalComponent,
+    ProductFilterComponent
   ],
   imports: [
     BrowserModule,

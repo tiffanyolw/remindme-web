@@ -3,6 +3,10 @@ import { Constants } from 'src/app/data/constants';
 import { Order, Ordering } from 'src/app/interfaces/order';
 import { Product, Status } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { ConsumeModalComponent } from './modals/consume-modal/consume-modal.component';
+import { TrashModalComponent } from './modals/trash-modal/trash-modal.component';
+import { ProductFilterComponent } from '../filters/product-filter/product-filter.component';
 
 @Component({
   selector: 'app-inventory',
@@ -10,8 +14,10 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./inventory.component.css']
 })
 export class InventoryComponent implements OnInit {
+  allProducts?: Product[];
   productsList?: Product[];
   expiredList?: Product[];
+  selectedList: string = "all";
 
   // filtered selections
   categories: number[] = [];
@@ -21,15 +27,27 @@ export class InventoryComponent implements OnInit {
     ordering: Ordering.ASC
   };
 
+  // consumed/trashed
+  quantityConsumed: number = 0;
+  quantityTrashed: number = 0;
+
   // error alert
   showErrorAlert: boolean = false;
   showDeleteError: boolean = false;
 
-  constructor(private _service: ProductService) {
+  constructor(private _service: ProductService, private _modalService: NgbModal) {
     this.loadAll();
   }
 
   private loadAll() {
+    this._service.getProducts(Status.Ready, undefined, this.categories, this.locations, this.order)
+      .subscribe((result) => {
+        this.allProducts = result;
+      }, () => {
+        this.showErrorAlert = true;
+        this.allProducts = [];
+      });
+
     this._service.getProducts(Status.Ready, false, this.categories, this.locations, this.order)
       .subscribe((result) => {
         this.productsList = result;
@@ -45,6 +63,17 @@ export class InventoryComponent implements OnInit {
         this.showErrorAlert = true;
         this.expiredList = [];
       });
+  }
+
+  getList(): Product[] {
+    if (this.selectedList === "all") {
+      return this.allProducts || [];
+    } else if (this.selectedList === "products") {
+      return this.productsList || [];
+    } else if (this.selectedList === "expired") {
+      return this.expiredList || [];
+    }
+    return [];
   }
 
   getQuantity(product: Product): string {
@@ -64,6 +93,23 @@ export class InventoryComponent implements OnInit {
     }, () => {
       this.showDeleteError = true;
     });
+  }
+
+  openConsumeModal(product: Product) {
+    const modalRef = this._modalService.open(ConsumeModalComponent);
+    modalRef.componentInstance.product = product;
+  }
+
+  openTrashModal(product: Product) {
+    const modalRef = this._modalService.open(TrashModalComponent);
+    modalRef.componentInstance.product = product;
+  }
+
+  presentFilter() {
+    const modalRef = this._modalService.open(ProductFilterComponent);
+    modalRef.componentInstance.categories = this.categories;
+    modalRef.componentInstance.locations = this.locations;
+    modalRef.componentInstance.order = this.order;
   }
 
   ngOnInit(): void {
