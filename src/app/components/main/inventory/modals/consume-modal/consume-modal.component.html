@@ -1,8 +1,5 @@
 <div class="modal-header">
     <h4 class="modal-title" id="consume-modal">Consume</h4>
-    <button type="button" class="close-btn" (click)="_activeModal.dismiss()">
-        <span aria-hidden="true">&times;</span>
-    </button>
 </div>
 <div class="modal-body">
     <div class="form-group">
@@ -13,5 +10,6 @@
     </div>
 </div>
 <div class="modal-footer">
+    <button type="button" class="btn cancel-btn" (click)="_activeModal.dismiss()">Cancel</button>
     <button type="button" class="btn" (click)="onConsume()">Save</button>
 </div>

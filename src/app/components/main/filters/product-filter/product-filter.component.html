@@ -1,1 +1,13 @@
-<p>product-filter works!</p>
+<div class="modal-header">
+    <h4 class="modal-title" id="product-filter-modal">Filter</h4>
+    <button type="button" class="btn reset-btn" (click)="reset()">
+        <span aria-hidden="true">Reset</span>
+    </button>
+</div>
+<div class="modal-body">
+    body
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn cancel-btn" (click)="_activeModal.dismiss()">Cancel</button>
+    <button type="button" class="btn" (click)="applyFilters()">Apply</button>
+</div>

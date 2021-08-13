@@ -1,4 +1,10 @@
-.close-btn {
-    border: none;
+.reset-btn {
     background-color: transparent;
+    color: #16697A;
+    border-color: #16697A;
+}
+
+.reset-btn:hover {
+    color: #ffffff;
+    background-color: #16697A;
 }

@@ -3,7 +3,7 @@ import { Constants } from 'src/app/data/constants';
 import { Order, Ordering } from 'src/app/interfaces/order';
 import { Product, Status } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product.service';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConsumeModalComponent } from './modals/consume-modal/consume-modal.component';
 import { TrashModalComponent } from './modals/trash-modal/trash-modal.component';
 import { ProductFilterComponent } from '../filters/product-filter/product-filter.component';
@@ -26,10 +26,6 @@ export class InventoryComponent implements OnInit {
     orderBy: "expiryDate",
     ordering: Ordering.ASC
   };
-
-  // consumed/trashed
-  quantityConsumed: number = 0;
-  quantityTrashed: number = 0;
 
   // error alert
   showErrorAlert: boolean = false;
@@ -110,6 +106,14 @@ export class InventoryComponent implements OnInit {
     modalRef.componentInstance.categories = this.categories;
     modalRef.componentInstance.locations = this.locations;
     modalRef.componentInstance.order = this.order;
+    modalRef.result.then((result) => {
+      if (result) {
+        this.categories = result.categories;
+        this.locations = result.locations;
+        this.order = this.order;
+      }
+      this.loadAll();
+    });
   }
 
   ngOnInit(): void {
