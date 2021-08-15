@@ -20,6 +20,7 @@ import { ViewProductComponent } from './components/main/history/view-product/vie
 import { ShoppingFilterComponent } from './components/main/filters/shopping-filter/shopping-filter.component';
 import { AddItemComponent } from './components/main/shopping-list/add-item/add-item.component';
 import { EditItemComponent } from './components/main/shopping-list/edit-item/edit-item.component';
+import { SettingsComponent } from './components/account/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { EditItemComponent } from './components/main/shopping-list/edit-item/edi
     ViewProductComponent,
     ShoppingFilterComponent,
     AddItemComponent,
-    EditItemComponent
+    EditItemComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
