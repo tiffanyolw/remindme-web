@@ -31,7 +31,7 @@ export class InventoryComponent implements OnInit {
   showErrorAlert: boolean = false;
   showDeleteError: boolean = false;
 
-  constructor(private _service: ProductService, private _modalService: NgbModal) {
+  constructor(private _service: ProductService, private _modal: NgbModal) {
     this.loadAll();
   }
 
@@ -92,17 +92,17 @@ export class InventoryComponent implements OnInit {
   }
 
   openConsumeModal(product: Product) {
-    const modalRef = this._modalService.open(ConsumeModalComponent);
+    const modalRef = this._modal.open(ConsumeModalComponent);
     modalRef.componentInstance.product = product;
   }
 
   openTrashModal(product: Product) {
-    const modalRef = this._modalService.open(TrashModalComponent);
+    const modalRef = this._modal.open(TrashModalComponent);
     modalRef.componentInstance.product = product;
   }
 
   presentFilter() {
-    const modalRef = this._modalService.open(ProductFilterComponent, {
+    const modalRef = this._modal.open(ProductFilterComponent, {
       injector: Injector.create({
         providers: [
           { provide: "categories", useValue: this.categories },

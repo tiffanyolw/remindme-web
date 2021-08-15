@@ -1,10 +1,16 @@
 # Backlog
 - ~~Switch from products list to expired list on inventory~~
-- Filtering on inventory
+- ~~Filtering on inventory~~
 - ~~Trash and consume a product~~
-- History
-- Shopping List
+- ~~History~~
+- ~~Shopping List~~
+- Error handling for all main pages
+- Show success messages for all pages where necessary (ex. account settings update successful)
+- Show "No products/items" if empty list
 - Authentication
+- Not found page
+- Fix account settings (update not working properly)
+- Reload products after consume and trash
 - Store filter preferences in local storage
 - Find a better way to deal with dates and timezones
 - Only make 1 API call and use filter function in inventory

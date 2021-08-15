@@ -1,0 +1,58 @@
+<form *ngIf="updateItemForm" [formGroup]="updateItemForm">
+    <div class="form-group mb-3">
+        <label for="name">
+            Name
+        </label>
+        <input class="form-control" type="text" id="name" formControlName="name" />
+
+        <span class="error" *ngIf="updateItemForm.get('name')?.errors && updateItemForm.get('name')?.touched">
+            Please enter a name
+        </span>
+    </div>
+    <div class="form-group mb-3">
+        <label for="quantity">Quantity</label>
+        <input class="form-control" type="number" id="quantity" min="0" formControlName="quantity" />
+
+        <span class="error" *ngIf="updateItemForm.get('quantity')?.errors && updateItemForm.get('quantity')?.touched">
+            Please enter a quantity
+        </span>
+    </div>
+    <div class="form-group mb-3">
+        <label for="unit">Unit</label>
+        <select class="form-control" id="unit" formControlName="unitId">
+            <option *ngFor="let unit of units" [value]="unit.id">
+                {{ unit.name }}
+            </option>
+        </select>
+    </div>
+    <div class="form-group mb-3">
+        <label for="category">
+            Category
+        </label>
+        <select class="form-control" id="category" formControlName="categoryId">
+            <option *ngFor="let category of categories" [value]="category.id">
+                {{ category.name }}
+            </option>
+        </select>
+    </div>
+    <div class="form-group mb-3">
+        <label for="storeName">
+            Store Name
+        </label>
+        <input class="form-control" type="text" id="name" formControlName="storeName" />
+    </div>
+    <div class="form-group mb-3">
+        <label for="price">Price</label>
+        <input class="form-control" type="number" id="quantity" min="0" formControlName="price" />
+    </div>
+    <div class="form-group mb-3">
+        <label for="notes">
+            Notes
+        </label>
+        <textarea class="form-control" id="notes" formControlName="notes"></textarea>
+    </div>
+
+    <button class="btn" (click)="onUpdate()" [disabled]="updateItemForm.invalid">
+        Update
+    </button>
+</form>

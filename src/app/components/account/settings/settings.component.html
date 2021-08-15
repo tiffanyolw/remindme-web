@@ -1,0 +1,48 @@
+<form [formGroup]="updateUserForm">
+    <h5>
+        Name
+    </h5>
+    <div class="form-group mb-3">
+        <input formControlName="firstName" placeholder="First Name" id="firstName">
+        <button (click)="onUpdateFirstName()" class="input-btn" [disabled]="firstNameCtrl?.errors">
+            Update
+        </button>
+    </div>
+    <div class="form-group mb-3">
+        <input formControlName="lastName" placeholder="Last Name">
+        <button (click)="onUpdateLastName()" class="input-btn" [disabled]="lastNameCtrl?.errors">
+            Update
+        </button>
+    </div>
+
+    <h5>
+        Email
+    </h5>
+    <div class="form-group mb-3">
+        <input formControlName="email" placeholder="Email">
+        <button (click)="onUpdateEmail()" class="input-btn" [disabled]="emailCtrl?.errors">
+            Update
+        </button>
+    </div>
+
+    <h5>
+        Password
+    </h5>
+    <div class="form-group mb-3">
+        <input formControlName="currentPassword" type="password" placeholder="Current Password">
+    </div>
+    <div class="form-group mb-3">
+        <input formControlName="newPassword" type="password" placeholder="New Password">
+    </div>
+    <div class="form-group">
+        <input formControlName="confirmNewPassword" type="password" placeholder="Confirm Password">
+    </div>
+    <small>
+        * New password must be at least {{minPasswordLen}} characters long
+    </small>
+    <div>
+        <button (click)="onUpdatePassword()" class="update-password-btn" [disabled]="newPasswordCtrl?.errors || currentPasswordCtrl?.errors || confirmNewPasswordCtrl?.errors">
+            Update
+        </button>
+    </div>
+</form>

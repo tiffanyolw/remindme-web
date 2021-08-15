@@ -1,0 +1,40 @@
+<div *ngIf="product">
+    <h2>
+        {{product.name}}
+    </h2>
+
+    <div>
+        <h5>Consumed</h5>
+        <p>{{getConsumed()}}</p>
+    </div>
+    <div>
+        <h5>Trashed</h5>
+        <p>{{getTrashed()}}</p>
+    </div>
+    <div>
+        <h5>Last Updated</h5>
+        <p>{{product.updatedAt | date:"MMM dd, yyyy":"+0000"}}</p>
+    </div>
+    <div *ngIf="product.expiryDate">
+        <h5>Expired On</h5>
+        <p>{{product.expiryDate | date:"MMM dd, yyyy":"+0000"}}</p>
+    </div>
+    <div *ngIf="product.purchaseDate">
+        <h5>Purchased On</h5>
+        <p>{{product.purchaseDate | date:"MMM dd, yyyy":"+0000"}}</p>
+    </div>
+    <div>
+        <h5>Category</h5>
+        <p>{{product.category?.name}}</p>
+    </div>
+    <div>
+        <h5>Location Stored</h5>
+        <p>{{product.locationStored?.name}}</p>
+    </div>
+    <div *ngIf="product.notes">
+        <h5>Notes</h5>
+        <p>{{product.notes}}</p>
+    </div>
+
+    <button class="btn" routerLink="/history">Done</button>
+</div>

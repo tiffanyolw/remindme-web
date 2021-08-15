@@ -1,8 +1,8 @@
 # Functionality (for testing)
 
-## Landing Page
-- Nav bar contains log in and sign up links
-- Title link redirects to landing page
+## Landing Page ("/")
+- Nav bar contains log in and sign up links if note logged in
+- Redirects to Log In page if not logged in, redirects to Inventory page if logged in
 
 ## Login
 - Show error messages upon touch and not enter in fields
@@ -10,6 +10,8 @@
 - Sign up link takes user to register page
 - On successful login, redirect to inventory
 - Error message if could not log in
+
+<img src="screenshots/account/login.PNG" width="150">
 
 ## Register
 - Show error messages upon touch and not enter in fields
@@ -30,6 +32,7 @@
 ## Inventory
 - Shows list of all products
 - Dropdown with options to show all, expired, or unexpired products
+- Able to filter by categories and locations, and order
 - Add Product button to add a product
 - Action button on each product shows 4 options
     - Consume or Trash shows a modal to consume/trash
@@ -41,6 +44,7 @@
 ### Add Product
 - Name, quantity, unit, category, location are required
 - Add button disabled if all required fields not filled in
+- Show error messages on required fields if touched and not filled in
 - On successful add, redirect back to Inventory page
 - If could not load categories, units, locations, show alert
 - If could not add, show alert
@@ -52,3 +56,45 @@
 - On successful update, redirect back to Inventory page
 - If could not load categories, units, locations, show alert
 - If could not update, show alert
+
+## History
+- List of all consumed/trashed products
+- Able to filter by categories and locations, and order
+- Action button
+    - View to view product details
+    - Delete to delete product
+
+### View Product
+- Header contains product name
+- Done button to go back to history page
+
+## Shopping List
+- Shows list of items
+- Dropdown with options to show to buy items or cleared items
+- Able to filter by categories, and order
+- Add Item button to add a product
+- Checkbox only on To Buy list and indicates the item is bought or not
+- Action button on each product shows 2 options
+    - Edit to edit the particular item
+    - Delete to delete the product
+- Clear button only shown on To Buy list to clear the to buy list
+
+### Add Item
+- Only name and category required
+- Category is No Category by default
+- Add button disabled until all required fields are filled and valid
+- Show error messages on required fields if touched and not filled in
+
+### Edit Item
+- Prefills form with current information
+- Name and category are required
+- Update button disabled if all required fields not filled in
+- On successful update, redirect back to Inventory page
+
+## Account Settings
+- Pre-filled with current user information, except password
+- Update buttons disabled if fields not filled in or invalid
+- Update password unsuccessful if current password is incorrect
+
+## Log Out
+- Log out current user and redirects to log in page

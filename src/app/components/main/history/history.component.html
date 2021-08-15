@@ -1,1 +1,43 @@
-<p>history works!</p>
+<div *ngIf="productsList">
+    <div *ngIf="productsList.length == 0">
+        No products found
+    </div>
+
+    <div *ngIf="productsList.length > 0">
+        <button class="btn filter-btn" (click)="presentFilter()">Filter Options</button>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Consumed</th>
+                    <th scope="col">Trashed</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Notes</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of productsList">
+                    <th scope="row">{{ product.name }}</th>
+                    <td>{{ getConsumed(product) }}</td>
+                    <td>{{ getTrashed(product) }}</td>
+                    <td>{{ product.category?.name }}</td>
+                    <td>{{ product.locationStored?.name }}</td>
+                    <td>{{ product.notes }}</td>
+                    <td>
+                        <div ngbDropdown class="d-inline-block">
+                            <button class="btn" ngbDropdownToggle>Actions</button>
+                            <div ngbDropdownMenu>
+                                <button ngbDropdownItem [routerLink]="'view-product/' + product.id">View</button>
+                                <div class="dropdown-divider"></div>
+                                <button ngbDropdownItem (click)="onDelete(product)">Delete</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
