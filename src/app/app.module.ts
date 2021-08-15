@@ -18,6 +18,8 @@ import { TrashModalComponent } from './components/main/inventory/modals/trash-mo
 import { ProductFilterComponent } from './components/main/filters/product-filter/product-filter.component';
 import { ViewProductComponent } from './components/main/history/view-product/view-product.component';
 import { ShoppingFilterComponent } from './components/main/filters/shopping-filter/shopping-filter.component';
+import { AddItemComponent } from './components/main/shopping-list/add-item/add-item.component';
+import { EditItemComponent } from './components/main/shopping-list/edit-item/edit-item.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { ShoppingFilterComponent } from './components/main/filters/shopping-filt
     TrashModalComponent,
     ProductFilterComponent,
     ViewProductComponent,
-    ShoppingFilterComponent
+    ShoppingFilterComponent,
+    AddItemComponent,
+    EditItemComponent
   ],
   imports: [
     BrowserModule,

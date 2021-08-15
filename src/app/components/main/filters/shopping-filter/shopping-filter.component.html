@@ -1,1 +1,44 @@
-<p>shopping-filter works!</p>
+<div class="modal-header">
+    <h4 class="modal-title" id="product-filter-modal">Filter</h4>
+    <button type="button" class="btn reset-btn" (click)="reset()">
+        <span aria-hidden="true">Reset</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <!-- Order -->
+    <h5>Order By</h5>
+    <div class="row">
+        <div class="col-6">
+            <select class="form-select" [value]="order.orderBy" [(ngModel)]="order.orderBy">
+                <option value="expiryDate">Expiry Date</option>
+                <option value="purchaseDate">Purchase Date</option>
+                <option value="name">Name</option>
+                <option value="createdAt">Date Created</option>
+                <option value="updatedAt">Last Updated</option>
+            </select>
+        </div>
+        <div class="col-6">
+            <button class="btn ordering-btn" (click)="toggleOrdering()">
+                {{ isDescending() ? "&#9660; Descending" : "&#9650; Ascending" }}
+            </button>
+        </div>
+    </div>
+
+    <!-- Category -->
+    <h5 class="mt-3">
+        Categories
+        <button class="select-all-btn" (click)="toggleAllCategories(true)">Select all</button>
+    </h5>
+    <div class="row">
+        <div *ngFor="let category of selectedCategories" class="col-md-6">
+            <input class="form-check-input me-1" type="checkbox" [(ngModel)]="category.isChecked" [id]="category.name">
+            <label [for]="category.name">{{ category.name }}</label>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn cancel-btn" (click)="_activeModal.dismiss()">Cancel</button>
+    <button type="button" class="btn" (click)="applyFilters()">Apply</button>
+</div>

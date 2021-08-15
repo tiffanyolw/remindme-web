@@ -1,1 +1,54 @@
-<p>shopping-list works!</p>
+<div *ngIf="shoppingList && clearedItems">
+    <select class="form-select w-auto select-list" [(ngModel)]="selectedList">
+        <option value="tobuy">To Buy</option>
+        <option value="archive">Archive</option>
+    </select>
+
+    <button class="btn ms-3 filter-btn" (click)="presentFilter()">Filter Options</button>
+
+
+    <button class="btn right-btn" routerLink="add-item">
+        Add an Item
+    </button>
+
+    <button class="btn clear-btn right-btn me-3" (click)="clearList()" *ngIf="selectedList == 'tobuy'">
+        Clear
+    </button>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col" *ngIf="selectedList == 'tobuy'"></th>
+                <th scope="col">Item</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Category</th>
+                <th scope="col">Store</th>
+                <th scope="col">Price</th>
+                <th scope="col">Notes</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of getList()">
+                <td *ngIf="selectedList == 'tobuy'">
+                    <input type="checkbox" [(ngModel)]="item.bought" (change)="toggleStatus(item)">
+                </td>
+                <th scope="row">{{ item.name }}</th>
+                <td>{{ getQuantity(item) }}</td>
+                <td>{{ item.itemCategory?.name }}</td>
+                <td>{{ item.storeName }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.notes }}</td>
+                <td>
+                    <div ngbDropdown class="d-inline-block">
+                        <button class="btn" ngbDropdownToggle>Actions</button>
+                        <div ngbDropdownMenu>
+                            <button ngbDropdownItem [routerLink]="['edit-item', item.id]">Edit</button>
+                            <button ngbDropdownItem (click)="onDelete(item)">Delete</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

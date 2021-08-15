@@ -7,6 +7,8 @@ import { ViewProductComponent } from './components/main/history/view-product/vie
 import { AddProductComponent } from './components/main/inventory/add-product/add-product.component';
 import { EditProductComponent } from './components/main/inventory/edit-product/edit-product.component';
 import { InventoryComponent } from './components/main/inventory/inventory.component';
+import { AddItemComponent } from './components/main/shopping-list/add-item/add-item.component';
+import { EditItemComponent } from './components/main/shopping-list/edit-item/edit-item.component';
 import { ShoppingListComponent } from './components/main/shopping-list/shopping-list.component';
 import { AuthguardService } from './services/account/authguard.service';
 
@@ -20,8 +22,8 @@ const routes: Routes = [
   { path: "history", component: HistoryComponent, canActivate: [AuthguardService] },
   { path: "history/view-product/:id", component: ViewProductComponent, canActivate: [AuthguardService] },
   { path: "shopping-list", component: ShoppingListComponent, canActivate: [AuthguardService] },
-  //{ path: "shopping-list/add-item", component: , canActivate: [AuthguardService] }
-  //{ path: "shopping-list/edit-item", component: , canActivate: [AuthguardService] }
+  { path: "shopping-list/add-item", component: AddItemComponent, canActivate: [AuthguardService] },
+  { path: "shopping-list/edit-item/:id", component: EditItemComponent, canActivate: [AuthguardService] },
   //{ path: "account/settings", component: , canActivate: [AuthguardService] }
   //{ path: "**", component: NotFoundComponent }
 ];

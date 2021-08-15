@@ -1,0 +1,19 @@
+.right-btn {
+    float: right;
+}
+
+.select-list {
+    float: left;
+}
+
+.clear-btn {
+        background-color: transparent;
+        color: #16697A;
+        border-color: #16697A;
+}
+    
+.clear-btn:hover {
+    color: #ffffff;
+    background-color: #16697A;
+}
+    
