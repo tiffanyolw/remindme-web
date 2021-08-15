@@ -37,3 +37,14 @@
     color: #ffffff;
     background-color: #16697A;
 }
+
+.filter-btn {
+    background-color: transparent;
+    color: #16697A;
+    border-color: #16697A;
+}
+
+.filter-btn:hover {
+    color: #ffffff;
+    background-color: #16697A;
+}
