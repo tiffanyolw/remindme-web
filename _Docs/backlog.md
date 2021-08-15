@@ -8,5 +8,5 @@
 - Store filter preferences in local storage
 - Find a better way to deal with dates and timezones
 - Only make 1 API call and use filter function in inventory
-- Log in to emit event only if successful login
+- ~~Log in to emit event only if successful login~~
 - Clicking on table headings will sort by the heading (asc and desc)

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Category } from 'src/app/interfaces/category';
 import { Location } from 'src/app/interfaces/location';
@@ -11,9 +11,9 @@ import { DataLookupService } from 'src/app/services/data-lookup.service';
   styleUrls: ['./product-filter.component.css']
 })
 export class ProductFilterComponent implements OnInit {
-  @Input() selectedCategoryIds: number[] = [];
-  @Input() selectedLocationIds: number[] = [];
-  @Input() order: Order = {
+  selectedCategoryIds: number[] = [];
+  selectedLocationIds: number[] = [];
+  order: Order = {
     orderBy: "expiryDate",
     ordering: Ordering.ASC
   };
@@ -24,7 +24,11 @@ export class ProductFilterComponent implements OnInit {
   categories: Category[] = [];
   locations: Location[] = [];
 
-  constructor(public _activeModal: NgbActiveModal, private _dataLookupService: DataLookupService) {
+  constructor(public _activeModal: NgbActiveModal, private _injector: Injector, private _dataLookupService: DataLookupService) {
+    this.selectedCategoryIds = this._injector.get<number[]>(<any>"categories");
+    this.selectedLocationIds = this._injector.get<number[]>(<any>"locations");
+    this.order = this._injector.get<Order>(<any>"order");
+
     // only call API if no categories
     if (this._dataLookupService.categories.length > 0) {
       this.categories = this._dataLookupService.categories;
@@ -34,7 +38,7 @@ export class ProductFilterComponent implements OnInit {
         this.categories = result;
         this.getSelectedCategoryData();
       }, () => {
-        //this.showToast("Error: Could not load categories");
+        // error
       });
     }
 
@@ -47,7 +51,7 @@ export class ProductFilterComponent implements OnInit {
         this.locations = result;
         this.getSelectedLocationData();
       }, () => {
-        //this.showToast("Error: Could not load locations stored");
+        // error
       });
     }
   }

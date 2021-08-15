@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { Constants } from 'src/app/data/constants';
 import { Order, Ordering } from 'src/app/interfaces/order';
 import { Product, Status } from 'src/app/interfaces/product';
@@ -102,17 +102,24 @@ export class InventoryComponent implements OnInit {
   }
 
   presentFilter() {
-    const modalRef = this._modalService.open(ProductFilterComponent);
-    modalRef.componentInstance.categories = this.categories;
-    modalRef.componentInstance.locations = this.locations;
-    modalRef.componentInstance.order = this.order;
+    const modalRef = this._modalService.open(ProductFilterComponent, {
+      injector: Injector.create({
+        providers: [
+          { provide: "categories", useValue: this.categories },
+          { provide: "locations", useValue: this.locations },
+          { provide: "order", useValue: this.order },
+        ]
+      })
+    });
     modalRef.result.then((result) => {
       if (result) {
         this.categories = result.categories;
         this.locations = result.locations;
-        this.order = this.order;
+        this.order = result.order;
       }
       this.loadAll();
+    }, () => {
+      // modal dismissed
     });
   }
 
