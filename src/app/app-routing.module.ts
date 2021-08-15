@@ -10,7 +10,7 @@ import { ShoppingListComponent } from './components/main/shopping-list/shopping-
 import { AuthguardService } from './services/account/authguard.service';
 
 const routes: Routes = [
-  //{ path: "", component: HomeComponent },
+  { path: "", redirectTo: "inventory", pathMatch: "full" },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "inventory", component: InventoryComponent, canActivate: [AuthguardService] },

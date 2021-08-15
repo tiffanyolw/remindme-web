@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
 
     this._service.login(data).subscribe((result) => {
       localStorage.setItem("currentUser", JSON.stringify(result));
+      this._service.onLogin();
       this._router.navigate(["inventory"]);
     }, () => {
       this.showError = true;

@@ -26,3 +26,14 @@
 .table {
     vertical-align: middle;
 }
+
+.cancel-btn {
+    background-color: transparent;
+    color: #16697A;
+    border-color: #16697A;
+}
+
+.cancel-btn:hover {
+    color: #ffffff;
+    background-color: #16697A;
+}

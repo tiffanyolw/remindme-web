@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { Constants } from 'src/app/data/constants';
 import { Order, Ordering } from 'src/app/interfaces/order';
 import { Product, Status } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product.service';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConsumeModalComponent } from './modals/consume-modal/consume-modal.component';
 import { TrashModalComponent } from './modals/trash-modal/trash-modal.component';
 import { ProductFilterComponent } from '../filters/product-filter/product-filter.component';
@@ -26,10 +26,6 @@ export class InventoryComponent implements OnInit {
     orderBy: "expiryDate",
     ordering: Ordering.ASC
   };
-
-  // consumed/trashed
-  quantityConsumed: number = 0;
-  quantityTrashed: number = 0;
 
   // error alert
   showErrorAlert: boolean = false;
@@ -106,10 +102,25 @@ export class InventoryComponent implements OnInit {
   }
 
   presentFilter() {
-    const modalRef = this._modalService.open(ProductFilterComponent);
-    modalRef.componentInstance.categories = this.categories;
-    modalRef.componentInstance.locations = this.locations;
-    modalRef.componentInstance.order = this.order;
+    const modalRef = this._modalService.open(ProductFilterComponent, {
+      injector: Injector.create({
+        providers: [
+          { provide: "categories", useValue: this.categories },
+          { provide: "locations", useValue: this.locations },
+          { provide: "order", useValue: this.order },
+        ]
+      })
+    });
+    modalRef.result.then((result) => {
+      if (result) {
+        this.categories = result.categories;
+        this.locations = result.locations;
+        this.order = result.order;
+      }
+      this.loadAll();
+    }, () => {
+      // modal dismissed
+    });
   }
 
   ngOnInit(): void {
