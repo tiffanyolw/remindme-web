@@ -16,8 +16,11 @@ export class UserService {
   }
 
   login(body: User): Observable<User> {
-    this.logInEvent.emit();
     return this._http.post<User>(`${this.apiURL}/login`, body);
+  }
+
+  onLogin() {
+    this.logInEvent.emit();
   }
 
   register(body: User): Observable<User> {
