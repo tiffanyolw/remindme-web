@@ -11,6 +11,8 @@
 - On successful login, redirect to inventory
 - Error message if could not log in
 
+<img src="screenshots/account/login.PNG" width="150">
+
 ## Register
 - Show error messages upon touch and not enter in fields
 - Sign up button disabled until all valid inputs entered
